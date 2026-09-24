@@ -1,0 +1,5 @@
+from transformers import pipeline
+summarizer = pipeline("text-generation",model="distilbert/distilgpt2")
+text="Mustaqil ishlaydi: Faqat berilgan savolga javob qaytarmaydi, balki murakkab va ko'p bosqichli vazifalarni rejalashtirib, oxirigacha bajaradi.Vazifalarni avtomatlashtiradi: Ma'lumotlarni tahlil qiladi, CRM tizimlariga yozadi, hisobotlar tuzadi va xatolarni kamaytiradi.24/7 rejimda xizmat ko'rsatadi: Mijozlar bilan muloqot qilib, buyurtmalarni qabul qilishi mumkin.Chatbotdan farqiChatbot: Faqat oldindan yozilgan qoidalar yoki matnli modellar asosida suhbatlashadi.AI agent: Tashqi vositalar, ma'lumotlar bazalari va ilovalarga kirish huquqiga ega bo'lib, real harakatlarni amalga oshiradi (masalan, faylni o'zgartirish, xabar yuborish)"
+summary = summarizer(text,max_length=30,min_length=5,do_sample=False)
+print(summary[0],"generated_text")
