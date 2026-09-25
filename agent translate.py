@@ -1,5 +1,4 @@
 from langchain_core.prompts import PromptTemplate
-# from langchain.chains import LLMchain
 from langchain_groq import ChatGroq
 from dotenv import load_dotenv
 load_dotenv()
