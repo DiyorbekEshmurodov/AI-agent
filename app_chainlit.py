@@ -1,7 +1,6 @@
 import asyncio
 import sys
 
-# Windows tizimidagi Event Loop muammosini hal etish
 if sys.platform == 'win32':
   asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
@@ -29,8 +28,20 @@ def get_session_history(session_id: str) -> InMemoryChatMessageHistory:
   return _store[session_id]
 
 
+# 1. AI Agent nomini o'zgartirish (Author name)
+@cl.author_rename
+def rename(orig_author: str):
+  rename_dict = {"Chatbot": "Diyorbek AI", "Assistant": "Diyorbek AI"}
+  return rename_dict.get(orig_author, orig_author)
+
+
 @cl.on_chat_start
 async def start():
+  # 2. Birinchi kirganda chiqadigan salomlashish xabari
+  await cl.Message(
+      content="Salom! Meni ismim Diyorbek, men sizning shaxsiy AI agentingizman. Sizga qanday yordam bera olaman?"
+  ).send()
+
   llm = ChatGroq(model_name="openai/gpt-oss-120b", temperature=0)
   search_tools = DuckDuckGoSearchRun()
 
@@ -45,8 +56,9 @@ async def start():
       (
           "system",
           (
-              "Sen yordamchi agentsan. ReAct sifatida fikr yurit va kerak bo'lsa"
-              " foydali vositalardan foydalan."
+              "Sening isming Diyorbek. Sen aqlli va xushmuomala AI agentsan. ReAct"
+              " sifatida fikr yurit va kerak bo'lsa foydali vositalardan"
+              " foydalan."
           ),
       ),
       MessagesPlaceholder("chat_history"),
