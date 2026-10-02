@@ -15,7 +15,7 @@ llm = ChatGroq(model_name="openai/gpt-oss-120b", temperature=1)
 writer_prompt = ChatPromptTemplate.from_messages([
     ("system","You are Python coding assistant. Generate clean , correct code."),
     ("human", "Write Python code following task: \n{task}\n The explain what the code does."),
-    MessagesPlaceholder("agent_scratchpad"),
+    # MessagesPlaceholder("agent_scratchpad"),
 ])
 
 writer_chain=writer_prompt | llm.with_structured_output(WriterOutput)
