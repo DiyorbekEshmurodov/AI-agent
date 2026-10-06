@@ -7,6 +7,6 @@ JOB_DESCRIPTION = """
 """
 
 MIN_YEARS = 2.0
-MST_HAVE_SKILLS = ["python","sql"]
+MUST_HAVE_SKILLS = ["python","sql"]
 NICE_TO_HAVE_SKILLS = ["python","fastapi"]
-THRSHOLD = 70
+THRESHOLD = 70

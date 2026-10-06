@@ -6,7 +6,7 @@ from nodes.loader import loader_node
 from nodes.extractor import extractor_node
 from nodes.scorer import score_node
 
-class HRState(TypedDict):
+class HRState(TypedDict,total=False):
     #Input
     resume_path: str
     job_description: str
