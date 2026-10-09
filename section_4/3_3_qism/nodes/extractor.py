@@ -1,7 +1,7 @@
 from typing import Dict
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_groq import ChatGroq
-from ..schemas import ResumeExtract
+from .schemas import ResumeExtract
 
 extract_prompts = ChatPromptTemplate.from_messages([
     ("system","You are an expert HR analyst.Extract info from the resume text"),
