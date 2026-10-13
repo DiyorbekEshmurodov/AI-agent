@@ -19,7 +19,7 @@ async def setup_image_agent():
 async def image_node(state):
     image_agent = await setup_image_agent()
     response = await image_agent.ainvoke({
-        "message":[{
+        "message": [{
             "role":"user",
             "content":f"Generate a thumbnail image for this LinkedIn post: \n {state['post_text']}"
         }]
