@@ -12,4 +12,4 @@ post_chain = post_prompt | llm
 
 def post_node(state):
     response = post_chain.invoke({"topic": state['topic']})
-    return {"post_text",response.content}
+    return {"post_text":response.content}

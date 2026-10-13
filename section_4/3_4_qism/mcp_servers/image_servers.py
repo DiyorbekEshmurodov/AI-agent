@@ -10,7 +10,7 @@ if not HF_TOKEN:
     raise RuntimeError("Please set HF_TOKEN in .env file.")
 client = InferenceClient(
     provider = "nebius",
-    apikey = HF_TOKEN,
+    token = HF_TOKEN,
 )
 
 mcp = FastMCP("ImageGen")

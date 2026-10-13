@@ -14,8 +14,8 @@ def build_graph():
     graph_builder.add_node("post",post_node)
     graph_builder.add_node("image",image_node)
 
-    graph_builder.add_node(START , "post")
-    graph_builder.add_node("post" , "image")
-    graph_builder.add_node("image" ,END)
+    graph_builder.add_edge(START , "post")
+    graph_builder.add_edge("post" , "image")
+    graph_builder.add_edge("image" ,END)
 
     return graph_builder.compile()

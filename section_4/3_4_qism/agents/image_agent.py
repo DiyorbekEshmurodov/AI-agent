@@ -7,7 +7,7 @@ async def setup_image_agent():
     client = MultiServerMCPClient({
         "image":{
             "command":"python",
-            "args":["mcp_server/image.server.py"],
+            "args":["mcp_servers/image.servers.py"],
             "transport":"stdio"
         }
     })
@@ -19,10 +19,10 @@ async def setup_image_agent():
 async def image_node(state):
     image_agent = await setup_image_agent()
     response = await image_agent.ainvoke({
-        "message": [{
+        "messages": [{
             "role":"user",
-            "content":f"Generate a thumbnail image for this LinkedIn post: \n {state['post_text']}"
+            "content":f"Generate a thumbnail image for this LinkedIn post: \n {state['post_text']}",
         }]
     })
 
-    return {"image_path": response["message"[-1].content]}
+    return {"image_path": response["messages"][-1].content}
