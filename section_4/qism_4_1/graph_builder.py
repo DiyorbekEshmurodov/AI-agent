@@ -1,8 +1,8 @@
 from langgraph.graph import StateGraph , START ,END
 from typing_extensions import TypedDict
 
-from agents.post_agent import post_node
-from agents.image_agent import image_node
+from section_4.qism_4_1.agents.post_agent import post_node
+from section_4.qism_4_1.agents.image_agent import image_node
 
 class State(TypedDict):
     topic:str

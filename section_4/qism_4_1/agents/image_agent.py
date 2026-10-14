@@ -25,4 +25,4 @@ async def image_node(state):
         }]
     })
 
-    return {"image_path": response["messages"][-1].content}
+    return {"image_path": "outputs/image.png"}
