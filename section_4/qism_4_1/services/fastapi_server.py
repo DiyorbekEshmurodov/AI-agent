@@ -21,4 +21,4 @@ async def generate_post(body:RequestBody):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("section_4.qism_4_1.services.fastapi_server:app", host="127.0.0.1", port=8000, reload=True)
+    uvicorn.run("section_4.qism_4_1.services.fastapi_server:app", host="127.0.0.1", port=8080, reload=True)
