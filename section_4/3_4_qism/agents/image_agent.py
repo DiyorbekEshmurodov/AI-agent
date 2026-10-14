@@ -7,7 +7,7 @@ async def setup_image_agent():
     client = MultiServerMCPClient({
         "image":{
             "command":"python",
-            "args":["mcp_servers/image.servers.py"],
+            "args":["mcp_servers/image_servers.py"],
             "transport":"stdio"
         }
     })
