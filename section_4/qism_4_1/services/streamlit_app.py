@@ -18,3 +18,4 @@ if st.button("Generate"):
 
     st.subheader("Generated content")
     st.write(data["post_text"])
+    """streamlit"""
