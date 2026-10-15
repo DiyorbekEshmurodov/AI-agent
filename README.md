@@ -1,56 +1,74 @@
-# AI-agent
-Markdown
-# AI Agent & LangChain Experiments
+# AI Agentlarni Qurish Kursi
 
-This repository demonstrates how to build and execute AI Agents using **LangChain (LCEL)**, **Groq API**, and **Hugging Face Transformers**. It serves as a practical guide for creating intelligent agents capable of handling complex prompts, translation tasks, and local NLP operations.
+📌 Ushbu repo Eldor Abdukhamidov tomonidan tayyorlangan **AI Agentlarni Qurish** bepul onlayn kursi uchun kodlarni o‘z ichiga oladi. Har bir bo‘limda amaliy misollar va kod loyihalari mavjud bo‘lib, ular orqali siz AI agentlarni bosqichma-bosqich yaratishni o‘rganasiz.
 
-## 🚀 Features
+---
 
-- **Groq Integration:** Fast inference using `openai/gpt-oss-120b` and `llama-3.3-70b-versatile` models.
-- **LangChain Expression Language (LCEL):** Modern pipeline construction using standard `prompt | llm` chains.
-- **Local NLP with Transformers:** Text generation and processing using Hugging Face models (`distilbert/distilgpt2`).
-- **Secure Environment:** Environment variable management using `python-dotenv`.
+## 🚀 O‘rnatish va Ishga Tushirish
 
-## 🛠️ Tech Stack
+### 1. Repozitoriyani klonlash
+```bash
+git clone git@github.com:EldorToptal/ai_agent.git
+cd ai-agents-course
+```
 
-- **Python 3.10+**
-- **LangChain Core & LangChain Groq**
-- **Hugging Face Transformers & PyTorch**
-- **Groq API**
+### 2. Virtual muhit yaratish
+```bash
+python -m venv agent-env
+source agent-env/bin/activate  # Mac/Linux
+agent-env\Scripts\activate   # Windows
+```
 
-## 📦 Installation & Setup
+### 3. Kutubxonalarni o‘rnatish
+```bash
+pip install -r requirements.txt
+```
 
-1. **Clone the repository:**
-   ```bash
-   git clone [https://github.com/DiyorbekEshmurodov/AI-agent.git](https://github.com/DiyorbekEshmurodov/AI-agent.git)
-   cd AI-agent
-Create and activate a virtual environment:
+### 4. Muhit sozlamalari
+`.env` faylida quyidagilarni belgilang:
+```
+OPENAI_API_KEY=your_api_key
+HF_TOKEN=your_huggingface_token
+GROQ_API_KEY=your_groq_token
+```
 
-Bash
-python -m venv .venv
-# On Windows:
-.venv\Scripts\activate
-# On macOS/Linux:
-source .venv/bin/activate
-Install dependencies:
+---
 
-Bash
-pip install langchain-core langchain-groq transformers torch python-dotenv
-Set up Environment Variables:
-Create a .env file in the root directory and add your Groq API key:
+## 📂 Loyihaning Tuzilishi
 
-Фрагмент кода
-GROQ_API_KEY=your_actual_groq_api_key_here
-💻 Usage Examples
-1. LangChain Translation Chain
-Run the translation script using modern LCEL syntax:
+```
+section_1/    # Boshlang‘ich agentlar (API, tarjimon, test agentlar)
+section_2/    # Multi-agent va funksional agentlar
+section_3/    # Amaliy loyihalar:
+   ├── 3_1_qism/  # Chatbot + ChromaDB
+   ├── 3_2_qism/  # Coding Agent
+   ├── 3_3_qism/  # HR Resume Screening Agent
+   └── 3_4_qism/  # Kontent yaratish (Post + Rasm)
+section_4/    # Agentlarni tarqatish (FastAPI, Streamlit, Telegram)
+requirements.txt
+.env.example
+README.md
+```
 
-Bash
-python agent_translate.py
-2. Hugging Face Transformers Test
-Run local text-generation models:
+### Section 1: Oddiy agentlar
+- API agenti
+- Tarjimon agent
+- LangChain va Transformers testlari
 
-Bash
-python test_transformers.py
-📝 License
-Distributed under the MIT License. See LICENSE for more information.
+### Section 2: Multi-agent yondashuvi
+- Arithmetic agent
+- Multi-funksional agent
+- Memory bilan ishlash
+
+### Section 3: Amaliy loyihalar
+- **3.1 Chatbot (ChromaDB bilan)**
+- **3.2 Coding Agent** (kod yozish va testlash)
+- **3.3 HR Resume Screening Agent** (PDF/Matn asosida)
+- **3.4 Kontent yaratuvchi agent** (LinkedIn post + rasm)
+
+### Section 4: Agentlarni tarqatish
+- **FastAPI orqali REST API**
+- **Streamlit orqali web interfeys**
+- **Telegram bot orqali foydalanuvchilar bilan aloqa**
+
+
