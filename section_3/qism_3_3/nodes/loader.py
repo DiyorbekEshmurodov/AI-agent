@@ -14,9 +14,9 @@ def loader_node(state:Dict) -> Dict:
     ext = os.path.splitext(path)[1].lower()
     if ext == '.pdf':
         docs = PyPDFLoader(path).load()
-        text = "\n\n".join([d.page_content for d in docs])
+        resume_text = "\n\n".join([d.page_content for d in docs])
     else:
         docs = TextLoader(path,encoding='utf-8').load()
-        text = "\n\n".join([d.page_content for d in docs])
+        resume_text = "\n\n".join([d.page_content for d in docs])
 
-    return {"resume_txt": text}
+    return {"resume_text": resume_text}

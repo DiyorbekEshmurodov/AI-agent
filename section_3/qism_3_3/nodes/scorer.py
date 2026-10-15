@@ -9,9 +9,20 @@ score_system = "You are HR screening assistant . Compare the candidate`s resume 
 
 score_prompt = ChatPromptTemplate.from_messages([
     ("system", score_system),
-    ("human","Job description: \n'''\n{job_description}\n}'''\n\n Minimum years of experience: {min_years}\n must-have"
-    "skills: {must_have_skills}\n Nice-to=have skills : {nice_to_have_skills}\n Pass threshold (overall score): {threshold}\n\n"
-    "Extracted resume (JSON): \n{extracted_json}\n\nReturn PASS or REJECT with reasons , improvements, ans detailed score breakdown")
+    ("human", """Job description: 
+'''
+{job_description}
+'''
+
+Minimum years of experience: {min_years}
+must-have skills: {must_have_skills}
+Nice-to-have skills: {nice_to_have_skills}
+Pass threshold (overall score): {threshold}
+
+Extracted resume (JSON): 
+{extracted_json}
+
+Return PASS or REJECT with reasons, improvements, and detailed score breakdown""")
 ])
 
 _llm = ChatGroq(model_name="openai/gpt-oss-120b", temperature=1)
