@@ -2,9 +2,9 @@ from typing_extensions import TypedDict
 from  typing import Dict , Any
 from langgraph.graph import StateGraph, START , END
 
-from .nodes.loader import loader_node
-from .nodes.extractor import extractor_node
-from .nodes.scorer import score_node
+from nodes.loader import loader_node
+from nodes.extractor import extractor_node
+from nodes.scorer import score_node
 
 class HRState(TypedDict,total=False):
     #Input

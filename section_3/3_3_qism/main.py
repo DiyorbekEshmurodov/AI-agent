@@ -1,4 +1,4 @@
-from .constants import (
+from constants import (
     JOB_DESCRIPTION,
     MIN_YEARS,
     MUST_HAVE_SKILLS,
@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def main():
-    from .graph_builder import build_graph
+    from graph_builder import build_graph
     graph = build_graph()
     resume_path = input("Path to resume (PDF/TXT):").strip()
 
@@ -19,7 +19,7 @@ def main():
         "job_description": JOB_DESCRIPTION,
         "min_years":MIN_YEARS,
         "must_have_skills":MUST_HAVE_SKILLS,
-"        nice_to_have_skills": NICE_TO_HAVE_SKILLS,
+        "nice_to_have_skills": NICE_TO_HAVE_SKILLS,
         "threshold" : THRESHOLD,
     }
     final_state = graph.invoke(initial_state)
