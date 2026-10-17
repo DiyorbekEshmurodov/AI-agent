@@ -1,4 +1,5 @@
 import os
+import logging
 from mcp.server.fastmcp import FastMCP
 from huggingface_hub import InferenceClient
 from dotenv import load_dotenv
@@ -23,7 +24,7 @@ def generate_image(prompt: str, model: str = "black-forest-labs/FLUX.1-schnell")
     Generate an image from a text prompt using HuggingFace Inference API.
     Return a file path to the saved image. 
     """
-    print(f"[ImageGen] Generating image for the prompt: {prompt}")
+    logging.info(f"[ImageGen] Generating image for the prompt: {prompt}")
 
     out_dir = os.environ.get("OUT_DIR", "outputs")
     os.makedirs(out_dir, exist_ok=True)

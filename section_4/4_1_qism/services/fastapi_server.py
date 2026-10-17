@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from graph_builder import build_graph
+from ..graph_builder import build_graph
 
 
 graph = build_graph()

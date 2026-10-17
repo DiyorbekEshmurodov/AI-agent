@@ -1,15 +1,14 @@
-from langchain.prompts import ChatPromptTemplate
-from langchain_openai import ChatOpenAI
+from langchain_core.prompts import ChatPromptTemplate
+# from langchain_openai import ChatOpenAI
 from langchain_groq import ChatGroq
 from dotenv import load_dotenv
 
 load_dotenv()
 
-# llm = ChatGroq(
-#     model="deepseek-r1-distill-llama-70b",
-#     temperature=0.4)
+llm = ChatGroq(model_name="openai/gpt-oss-120b", temperature=0.4)
 
-llm = ChatOpenAI(model_name="gpt-4o-mini", temperature=0.4)
+
+# llm = ChatOpenAI(model_name="gpt-4o-mini", temperature=0.4)
 
 post_prompt = ChatPromptTemplate.from_messages([
     ("system", "You are a professional LinkedIn content creator specializing in technology."),

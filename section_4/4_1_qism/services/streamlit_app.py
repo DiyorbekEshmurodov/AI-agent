@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 
-API_URL = "http://127.0.0.1:8080/generate_post"
+API_URL = "http://127.0.0.1:8005/generate_post"
 
 st.title("LinkedIn Content Agent")
 topic = st.text_input("Enter a topic for LinkedIn Post: ")
