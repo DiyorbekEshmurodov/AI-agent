@@ -4,7 +4,7 @@ import ollama
 from audio import detect_wake_work,transcriber,speak
 
 class VoiceAssistantState(TypedDict):
-    message: List[str,str]
+    messages:  List[Dict[str, str]]
     user_input: str
     response: str
 
@@ -33,7 +33,7 @@ class VoiceAssistantAgent:
 
     def run(self):
         state = VoiceAssistantState(
-            message=[],
+            messages=[],
             user_input="",
             response_text=""
         )
