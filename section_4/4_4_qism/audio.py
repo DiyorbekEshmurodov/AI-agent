@@ -4,7 +4,6 @@ import soundfile as sf
 import pygame
 from kokoro import KPipeline
 from utils import logger
-import psutil
 import torch
 import sys
 import numpy as np
