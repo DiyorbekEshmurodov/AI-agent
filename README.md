@@ -1,7 +1,4 @@
-# AI Agentlarni Qurish Kursi
-
-📌 Ushbu repo Eldor Abdukhamidov tomonidan tayyorlangan **AI Agentlarni Qurish** bepul onlayn kursi uchun kodlarni o‘z ichiga oladi. Har bir bo‘limda amaliy misollar va kod loyihalari mavjud bo‘lib, ular orqali siz AI agentlarni bosqichma-bosqich yaratishni o‘rganasiz.
-
+# AI Agentlarni
 ---
 
 ## 🚀 O‘rnatish va Ishga Tushirish
