@@ -20,7 +20,7 @@ transcriber = pipeline("automatic-speech-recognition",
 
 tts_pipeline = KPipeline(lang_code="a")
 
-def detect_wake_work(wake_word="marvin",prob_threshold=0.5):
+def detect_wake_work(wake_word="marvin",prob_threshold=0.3):
     logger.info("Listening for a wake work...")
     mic = ffmpeg_microphone_live(
         sampling_rate=wake_classifier.feature_extractor.sampling_rate,
