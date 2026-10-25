@@ -1,12 +1,12 @@
 from typing import TypedDict , List,Dict,Literal
 from langgraph.graph import StateGraph, START , END
 import ollama
-from audio import detect_wake_work,transcriber,speak
+from audio import detect_wake_work,transcribe,speak
 
 class VoiceAssistantState(TypedDict):
     messages:  List[Dict[str, str]]
     user_input: str
-    response: str
+    response_text: str
 
 class VoiceAssistantAgent:
     def __init__(self):
@@ -44,7 +44,7 @@ class VoiceAssistantAgent:
         return state
 
     def _listen_input(self,state:VoiceAssistantState) -> VoiceAssistantState:
-        user_text = transcriber()
+        user_text = transcribe()
         state["user_input"] = user_text
         state['messages'].append({'role':'user','content':user_text})
         return state

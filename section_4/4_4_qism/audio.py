@@ -13,6 +13,7 @@ device =  "cuda:0" if torch.cuda.is_available() else "cpu"
 wake_classifier = pipeline("audio-classification",
                            model="MIT/ast-finetuned-speech-commands-v2",
                            device=device)
+print(wake_classifier.model.config.id2label)
 
 transcriber = pipeline("automatic-speech-recognition",
                        model="openai/whisper-base.en",
