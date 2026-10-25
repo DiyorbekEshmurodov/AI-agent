@@ -31,7 +31,9 @@ def detect_wake_work(wake_word="marvin",prob_threshold=0.3):
 
     try:
         for prediction in wake_classifier(mic):
+            print("AUDIO KELDI")
             pred = prediction[0]
+            print(f"Model aniqladi: {pred['label']} | Ishonch: {pred['score']:.3f}")
             if pred['label'] == wake_word and pred['score'] > prob_threshold:
                 logger.info("Wake word '{wake_word}' detected!")
                 return True
