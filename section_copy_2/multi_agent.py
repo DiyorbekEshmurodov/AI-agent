@@ -43,12 +43,103 @@ def fx_convert(amount: float, base: str, target: str) -> str:
     except Exception as e:
         return f"Conversion failed {e}"
 
-currenc_tool = [fx_convert]
+currency_tool = [fx_convert]
 currency_prompt = ChatPromptTemplate.from_messages([
     ("system","You are the Currency Agent .Only handle currency conversion using fx_convert tool."),
     ("human","{input}"),
     MessagesPlaceholder("agent_scratchpad"),
 ])
+currency_agent_runnable = create_tool_calling_agent(
+    llm=llm, tools=currency_tool , prompt=currency_prompt
+)
+currency_agent = AgentExecutor(
+    agent=currency_agent_runnable ,  tools=currency_tool,max_iterations=3
+)
+#===============================================================#
+wiki_api = WikipediaAPIWrapper(lang="en",top_k_results=2,doc_content_chars_max=1200,headers={"User-Agent": "MyTravelAgent/1.0 (contact@example.com)"})
+@tool
+def safe_wikipedia_tool(query: str) -> str:
+    """Search Wikipedia for destination facts, culture and travel information."""
+    try:
+        wiki_run = WikipediaQueryRun(api_wrapper=wiki_api)
+        return wiki_run.run(query)
+    except Exception as e:
+        return f"Wikipedia bilan ulanish xatolik yuz berdi: {e}"
 
+travel_tool=[safe_wikipedia_tool]
+travel_prompt = ChatPromptTemplate.from_messages([
+    (
+        "system",
+        (
+            "You are the travel Guide Agent. Fetch concise travel-relevant"
+            " facts and tips using safe_wikipedia_tool, Focus on highlights,"
+            " neighborhoods, transport, must-see spots."
+        ),
+    ),
+    ("human", "{input}"),
+    MessagesPlaceholder("agent_scratchpad"),
+])
+travel_agent_runnable = create_tool_calling_agent(
+    llm=llm, tools=travel_tool , prompt=travel_prompt
+)
+travel_agent = AgentExecutor(
+    agent=travel_agent_runnable , tools= travel_tool,max_iterations=3
+)
+#=================================================#
+@tool
+def currency_agent_tool(task: str)->str:
+    """Delegate currency-related tasks(amount/base/target) in the currency agent"""
+    out = currency_agent.invoke({"input":task})
+    return out.get('output',str(out))
+
+@tool
+def travel_agent_tool(task: str)->str:
+    """Delegate destination information queries in the Travel Guide agent"""
+    out = travel_agent.invoke({"input":task})
+    return out.get('output',str(out))
+
+coord_tools = [currency_agent_tool, travel_agent_tool]
+
+coord_prompt = ChatPromptTemplate.from_messages([
+    ("system", "You are the Coordinator Agent. Understand the user`s goal, than call th right role agent"
+               "User currency_agent_tool for any currency conversions"
+               "User travel_tool_agent for destination info"
+               "If both are needed, call both and product a single, well-structured answer."
+               "Remember user preferences from the conversation"),
+    MessagesPlaceholder('chat_history'),
+    ("human", "{input}"),
+    MessagesPlaceholder("agent_scratchpad"),
+])
+
+coord_agent_runnable = create_tool_calling_agent(
+    llm=llm, tools=coord_tools,prompt=coord_prompt
+)
+coord_agent = AgentExecutor(
+    agent=coord_agent_runnable, tools=coord_tools
+)
+
+_store = Dict[str,InMemoryChatMessageHistory] = {}
+
+def get_session_history(session_id: str) -> InMemoryChatMessageHistory:
+    if session_id not in _store:
+        _store[session_id] = InMemoryChatMessageHistory()
+    return _store[session_id]
+
+agent_with_memory = RunnableWithMessageHistory(
+    coord_agent,
+    input_messages_key="input",
+    history_messages_key="chat_history",
+    output_messages_key="output"
+)
+
+def ask(session_id: str , text:str)-> str:
+    cfg = {"configurable":{"session_id":session_id}}
+    result = agent_with_memory.invoke({"input":text},config=cfg)
+    return result.get("output",str(result))
+
+if __name__ == "__main__":
+    session_id = "sherale_session"
+    print(ask(session_id, "Parijdagi qaysi muzeydi tavsiya qilasiz?"))
+    print(ask(session_id, "Sayohat uchun 500 USD bor bu pul miqdori EUR qancha buladi?"))
 
 
