@@ -47,7 +47,7 @@ agent_with_memory = RunnableWithMessageHistory(
     agent,
     get_session_history,
     input_messages_key="input",
-    history_messages_key="history",
+    history_messages_key="chat_history",
     output_messages_key="output",
 )
 
@@ -57,8 +57,8 @@ def ask(session_id:str,text:str) -> str:
     return result.get("output",str(result))
 
 if __name__ == "__main__":
-    session_id = "sherale-session"
-    print(ask(session_id,"Meni ismim sherale"))
+    session_id = "maxa-session"
+    print(ask(session_id,"Meni ismim maxa"))
     print(ask(session_id, "O`zbekistondagi poytaxti qayer?"))
     print(ask(session_id, "5 kupaytirsa 10 nima qanday javob chiqadi"))
     print(ask(session_id, "Meni ismim nima?"))
