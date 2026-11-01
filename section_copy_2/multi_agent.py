@@ -23,7 +23,7 @@ def _fx_convert_impl(amount:float, base:str, target:str) -> dict:
     rate = data['rate'][target_up]
     result = rate * amount
     return {
-              "amount": amount,
+    "amount": amount,
     "base":base,
     "target":target_up,
     "rate":rate,
