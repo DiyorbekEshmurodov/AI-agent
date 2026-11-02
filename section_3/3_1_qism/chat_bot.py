@@ -37,13 +37,8 @@ tools = [db_search]
 
 # 1. Prompt
 prompt = ChatPromptTemplate.from_messages([
-    (
-        "system",
-        (
-            "Siz mijozlarga xizmat kursatuvchi chatbotsiz.Faqat mavjud manbalardan foydalanib javob bering.Agar"
-            "topilmasa tug`risini ayting"
-        ),
-    ),
+    ("system", "Siz mijozlarga xizmat kursatuvchi chatbotsiz.Faqat mavjud manbalardan foydalanib javob bering.Agar"
+               "topilmasa tug`risini ayting"),
     MessagesPlaceholder("chat_history"),
     ("human", "{input}"),
     MessagesPlaceholder("agent_scratchpad"),
