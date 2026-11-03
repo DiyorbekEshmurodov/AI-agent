@@ -26,7 +26,7 @@ def build_graph():
     graph_builder.add_node("writer",writer_node)
     graph_builder.add_node("tester",tester_node)
 
-    graph_builder.add_adge(START , "writer")
-    graph_builder.add_adge("writer",'tester')
-    graph_builder.add_conditional_edges('teste',route_decision)
+    graph_builder.add_edge(START , "writer")
+    graph_builder.add_edge("writer",'tester')
+    graph_builder.add_conditional_edges('tester',route_decision)
     return graph_builder.compile()

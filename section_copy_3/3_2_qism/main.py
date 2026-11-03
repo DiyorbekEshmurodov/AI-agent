@@ -16,7 +16,7 @@ def main():
     }
 
     final_state = None
-    for event in graph.strem(initial_state,stream_node="updates"):
+    for event in graph.stream(initial_state,stream_node="updates"):
         for node , update in event.items():
             final_state = {**(final_state or initial_state),**update}
     if final_state:
