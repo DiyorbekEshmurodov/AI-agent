@@ -3,7 +3,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_groq import ChatGroq
 from ..schemas import ResumeExtract , HRDecision
 
-score_system = "You are HR screening assistant . Compare the candidate`s resume against teh job requirements. Be"
+score_system = "You are HR screening assistant . Compare the candidate`s resume against the job requirements. Be"
 "strict but fair . Score each area (skills/experience/education) on 0-100. Decide PASS  only if overall >= threshold"
 "and must-have skills are sufficiently met."
 
