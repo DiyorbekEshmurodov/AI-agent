@@ -1,7 +1,7 @@
 from typing import Dict
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_groq import ChatGroq
-# from ..schemas import ResumeExtract , HRDecision
+from ..schemas import ResumeExtract , HRDecision
 
 score_system = "You are HR scoreening assistant . Compare the candidate`s resume against the jo requirements . Be"
 "strict but fair . Score each area (skills/experience/education) on 0-100. Decide PASS  only if overall >= threshold"
